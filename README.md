@@ -41,7 +41,7 @@ The program will translate the Joy-Con state into numbers between 1.0 and 3.0 an
 
 ### The Joy-Con is paired but won't connect to the PC
 
-Try holding the pair button, then pressing the SR button.
+Try holding the pair button until the lights start blinking. Release the pair button and then press the SR button.
 
 ### The Ring-Con is connected, but not detected
 
