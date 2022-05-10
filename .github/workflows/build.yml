@@ -24,9 +24,10 @@ jobs:
     - name: Copy resources
       run: cp -r res target/release/
     - name: Upload
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: osc-ringcon.exe
         path: |
           target/release/osc-ringcon.exe
           target/release/osc_ringcon.pdb
+          target/release/res/
