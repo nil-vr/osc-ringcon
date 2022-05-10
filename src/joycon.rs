@@ -99,9 +99,9 @@ impl OscOut {
         self.mid_in = config.in_center;
         let half_out = (config.out_range.end() - config.out_range.start()) / 2.0;
         self.mid_out = config.out_range.start() + half_out;
-        self.factor_low = -half_out / (config.in_center - config.in_range.start()) as f32;
-        self.factor_high = half_out / (config.in_range.end() - config.in_center) as f32;
-        self.range_out = *config.out_range.start()..=*config.out_range.end();
+        self.factor_low = half_out / (config.in_range.end() - config.in_center) as f32;
+        self.factor_high = -half_out / (config.in_center - config.in_range.start()) as f32;
+        self.range_out = f32::min(*config.out_range.start(), *config.out_range.end())..=f32::max(*config.out_range.start(), *config.out_range.end());
 
         self.idle_out = config.out_idle;
     }
@@ -116,19 +116,9 @@ impl OscOut {
         } else if flex == self.mid_in {
             self.mid_out
         } else if flex < self.mid_in {
-            let v = self.mid_out + (self.mid_in - flex) as f32 * self.factor_low;
-            if v < *self.range_out.start() {
-                *self.range_out.start()
-            } else {
-                v
-            }
+            (self.mid_out + (self.mid_in - flex) as f32 * self.factor_low).clamp(*self.range_out.start(), *self.range_out.end())
         } else {
-            let v = self.mid_out + (flex - self.mid_in) as f32 * self.factor_high;
-            if v > *self.range_out.end() {
-                *self.range_out.end()
-            } else {
-                v
-            }
+            (self.mid_out + (flex - self.mid_in) as f32 * self.factor_high).clamp(*self.range_out.start(), *self.range_out.end())
         };
 
         let range = self.buffer.len() - 4..;
