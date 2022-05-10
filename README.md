@@ -30,6 +30,10 @@ Create a new animation controller layer which uses this parameter to drive a ble
 
 ![Screenshot of blend tree settings](docs/blendtree.png)
 
+### Tip
+
+Add an expression menu which resets the parameter to 0.
+
 ## Usage
 
 1. Pair the Joy-Con to your computer.
