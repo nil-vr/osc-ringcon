@@ -1,0 +1,32 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Restore cache
+      uses: Swatinem/rust-cache@v1
+    - name: Build
+      run: cargo build --verbose --release
+    - name: Copy resources
+      run: cp -r res target/release/
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: osc-ringcon.exe
+        path: |
+          target/release/osc-ringcon.exe
+          target/release/osc_ringcon.pdb
