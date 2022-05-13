@@ -28,3 +28,6 @@ features = [
     "Win32_Foundation",
     "Win32_Globalization",
 ]
+
+[build-dependencies]
+winres = "0.1.12"
