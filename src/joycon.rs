@@ -74,10 +74,10 @@ impl OscOut {
             target: SocketAddr::V4(SocketAddrV4::new(Ipv4Addr::LOCALHOST, 0)),
             buffer: Vec::new(),
             mid_in: 0,
-            mid_out: 2.0,
+            mid_out: 0.75,
             factor_low: 0.0,
             factor_high: 0.0,
-            range_out: 1.0..=3.0,
+            range_out: 0.5..=1.0,
             idle_out: 0.0,
         }
     }

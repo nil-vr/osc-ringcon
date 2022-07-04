@@ -46,7 +46,7 @@ impl Application for App {
             in_center: 15,
             in_range: 7..=24,
             out_idle: 0.0,
-            out_range: 1.0..=3.0,
+            out_range: 0.5..=1.0,
         };
         config_tx.try_send(config.clone()).unwrap();
 

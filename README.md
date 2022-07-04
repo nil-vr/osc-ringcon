@@ -23,10 +23,10 @@ Create an avatar parameter called `ringcon_flex` with type `Float` and a default
 ![Screenshot of avatar parameters with ringcon_flex highlighted](docs/parameter.png)
 
 Create a new animation controller layer which uses this parameter to drive a blend tree. In the blend tree,
-- Configure both 0.0 and 0.5 to be the hidden animation.
-- Configure 1.0 to be the squeezed animation.
-- Configure 2.0 to be the shown and idle animation.
-- Configure 3.0 to be the pulled animation.
+- Configure both 0.0 and 0.25 to be the hidden animation.
+- Configure 0.5 to be the squeezed animation.
+- Configure 0.75 to be the shown and idle animation.
+- Configure 1.0 to be the pulled animation.
 
 ![Screenshot of blend tree settings](docs/blendtree.png)
 
@@ -39,7 +39,7 @@ Add an expression menu which resets the parameter to 0.
 1. Pair the Joy-Con to your computer.
 2. Start the program and insert the Joy-Con into the Ring-Con.
 
-The program will translate the Joy-Con state into numbers between 1.0 and 3.0 and send them to `/avatar/parameters/ringcon_flex`.
+The program will translate the Joy-Con state into numbers between 0.5 and 1.0 and send them to `/avatar/parameters/ringcon_flex`.
 
 ## Troubleshooting
 
