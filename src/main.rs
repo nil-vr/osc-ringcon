@@ -3,14 +3,18 @@
 use fluent_bundle::FluentArgs;
 use font_kit::source::SystemSource;
 use futures::channel::mpsc;
+use iced::window::Icon;
 use iced::{
     executor, Application, Column, Command, Container, Element, Length, ProgressBar, Settings,
     Subscription, Text,
 };
 use iced_native::subscription;
+use image::io::Reader as ImageReader;
+use image::ImageFormat;
 use internationalization::Resources;
 use messages::{Configuration, Status};
 use std::any::TypeId;
+use std::io::Cursor;
 use std::net::{Ipv4Addr, SocketAddr, SocketAddrV4};
 use tokio::sync::watch;
 use tokio_stream::wrappers::WatchStream;
@@ -158,6 +162,14 @@ fn load_font<I: IntoIterator<Item = V>, V: AsRef<str>>(names: I) -> Option<&'sta
         .next()
 }
 
+fn load_icon() -> Icon {
+    let mut reader = ImageReader::new(Cursor::new(include_bytes!("../icon.png")));
+    reader.set_format(ImageFormat::Png);
+    let image = reader.decode().unwrap().to_rgba8();
+    let (width, height) = (image.width(), image.height());
+    Icon::from_rgba(image.into_vec(), width, height).unwrap()
+}
+
 fn main() -> anyhow::Result<()> {
     if std::env::args().skip(1).collect::<Vec<_>>() == ["agent"] {
         return agent::run();
@@ -172,6 +184,7 @@ fn main() -> anyhow::Result<()> {
         flags: Some(resources),
         window: iced::window::Settings {
             size: (384, 128),
+            icon: Some(load_icon()),
             ..Default::default()
         },
         ..Default::default()

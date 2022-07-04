@@ -14,6 +14,7 @@ font-kit = "0.11"
 futures = "0.3"
 iced = { version = "0.4", features = ["tokio"] }
 iced_native = "0.5.0"
+image = { version = "0.24.2", default-features = false, features = ["png"] }
 ipc-channel = { version = "0.16", features = ["async"] }
 joycon-rs = "0.6"
 serde = { version = "1", features = ["derive"] }
@@ -26,7 +27,7 @@ version = "0.36"
 features = [
     "alloc",
     "Win32_Foundation",
-    "Win32_Globalization",
+    "Win32_Globalization"
 ]
 
 [build-dependencies]
