@@ -22,7 +22,7 @@ jobs:
     - name: Build
       run: cargo build --verbose --release
     - name: Copy resources
-      run: rm -r target/release/res; cp -r res target/release/
+      run: rm -r target/release/res -ErrorAction Ignore; cp -r res target/release/
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
